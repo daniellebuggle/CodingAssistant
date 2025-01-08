@@ -14,15 +14,22 @@ SYSTEM_MESSAGE = {
                "\"I can't help you with that, sorry\"."
 }
 
+code_submitted = False
+code = ''
 
 def stream_response(messages):
+    global code_submitted
     try:
         # Ensure 'messages' is properly formatted with the 'type' parameter
         for message in messages:
-            if isinstance(message["content"], list):  # Check if content is incorrectly wrapped in a list
-                message["content"] = message["content"][0]  # Extract the first item in the list
-
-        print("Sending request with messages:", messages)  # Log request
+            # Phrase to check for
+            phrase = 'Please read the highlighted code and return the code as a message. Remove any comments or non-code text in the input.'
+            # Check if the phrase is in the content
+            if phrase in message['content']:
+                code_submitted = True
+                print("The content contains the specified phrase.")
+            else:
+                print("The content does not contain the specified phrase.")
 
         # Stream the response from the OpenAI model
         response = client.chat.completions.create(
