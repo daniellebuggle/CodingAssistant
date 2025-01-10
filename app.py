@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, Response
 import json
 from openai import OpenAI
+import re
 
 app = Flask(__name__)
 client = OpenAI()
@@ -28,6 +29,17 @@ def stream_response(messages):
             if phrase in message['content']:
                 code_submitted = True
                 print("The content contains the specified phrase.")
+
+                # Extract the code block encompassed in ``` symbols
+                code_match = re.search(r'```(?:[a-zA-Z0-9\s/().-]+)?\n(.*?)```', message['content'], re.DOTALL)
+                if code_match:
+                    raw_code = code_match.group(1)
+                    # Only take the code starting from "public class"
+                    start_match = re.search(r'(public class.*)', raw_code, re.DOTALL)
+                    if start_match:
+                        code = start_match.group(1).strip()
+                        print("Code extracted successfully.")
+                        print(code)
             else:
                 print("The content does not contain the specified phrase.")
 
