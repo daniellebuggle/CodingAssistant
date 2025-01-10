@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, Response
 import json
 from openai import OpenAI
+import re
+import DynamicCodeTest
 
 app = Flask(__name__)
 client = OpenAI()
@@ -17,12 +19,28 @@ SYSTEM_MESSAGE = {
 
 def stream_response(messages):
     try:
-        # Ensure 'messages' is properly formatted with the 'type' parameter
         for message in messages:
-            if isinstance(message["content"], list):  # Check if content is incorrectly wrapped in a list
-                message["content"] = message["content"][0]  # Extract the first item in the list
-
-        print("Sending request with messages:", messages)  # Log request
+            # Phrase to check for
+            phrase = 'Test the highlighted code.'
+            if phrase in message['content']:
+                # Extract the code block encompassed in ``` symbols
+                code_match = re.search(r'```(?:[a-zA-Z0-9\s/().-]+)?\n(.*?)```', message['content'], re.DOTALL)
+                if code_match:
+                    raw_code = code_match.group(1)
+                    # Only take the code starting from "public class"
+                    start_match = re.search(r'(public class.*)', raw_code, re.DOTALL)
+                    if start_match:
+                        code = start_match.group(1).strip()
+                        class_name_match = re.search(r'public class\s+(\w+)', code)
+                        if class_name_match:
+                            extracted_class_name = class_name_match.group(1)
+                            junit_results = DynamicCodeTest.run_java_tests(code, extracted_class_name)
+                            print("CODE RESULTS: \n", junit_results)
+                            final_message = (f"These are the test results that the student provided, check to see if "
+                                             f"they are all correct. If they are, congratulate them and say they "
+                                             f"passed all tests. If not, provide a hint as to where they went "
+                                             f"wrong.\n\n{junit_results}")
+                            messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
         response = client.chat.completions.create(
@@ -57,7 +75,6 @@ def chat_completions():
     messages = data.get("messages", [])
     if not messages:
         return jsonify({"error": "No messages provided"}), 400
-
     # Add system message if not already present
     if all(msg["role"] != "system" for msg in messages):
         messages.insert(0, SYSTEM_MESSAGE)
