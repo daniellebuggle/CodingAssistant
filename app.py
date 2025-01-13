@@ -39,7 +39,7 @@ def stream_response(messages):
                             final_message = (f"These are the test results that the student provided, check to see if "
                                              f"they are all correct. If they are, congratulate them and say they "
                                              f"passed all tests. If not, provide a hint as to where they went "
-                                             f"wrong.\n\n{junit_results}")
+                                             f"wrong by only naming what test(s) failed.\n\n{junit_results}")
                             messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
