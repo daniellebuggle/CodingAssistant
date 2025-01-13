@@ -1,4 +1,5 @@
 junit-platform-console-standalone-1.11.4.jar
 vcs.xml
+.idea
 src/
 out/
