@@ -24,7 +24,7 @@ def run_python_tests(code, function_name):
         raise ValueError(f"Function '{function_name}' not found in the provided code.")
 
     try:
-        module_name = f"python_tests.{function_name}Test"
+        module_name = f"python_tests.{function_name}_test"
         module = importlib.import_module(module_name)
     except ImportError as e:
         raise ValueError(
@@ -33,7 +33,7 @@ def run_python_tests(code, function_name):
 
     # Set attributes so that dynamic_function can be used in the test suite
     setattr(module, function_name, dynamic_function)
-    test_class = getattr(module, f"{function_name}Test", None)
+    test_class = getattr(module, f"{function_name}_test", None)
     if not test_class:
         raise ValueError(f"Test class for function '{function_name}' not found in the test module.")
 
