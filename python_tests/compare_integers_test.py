@@ -1,5 +1,5 @@
 import unittest
-class compare_integersTest(unittest.TestCase):
+class compare_integers_test(unittest.TestCase):
     def test_equal(self):
         """Check when both integers are equal."""
         self.assertEqual(compare_integers(10, 10), 1)  # a == b
