@@ -30,7 +30,6 @@ public class FactorialCalculatorTest {
     @Test
     public void testFactorialOfNegativeNumber() {
         // Factorial is not defined for negative numbers, so we can throw an exception.
-        // Alternatively, we can return -1 or handle the case as per requirements.
         assertThrows(IllegalArgumentException.class, () -> FactorialCalculator.calculateFactorial(-5));
     }
 }
