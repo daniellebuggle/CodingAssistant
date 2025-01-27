@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, Response
 import json
 from openai import OpenAI
 import re
-import DynamicCodeTest
+import exercises_badges, database, DynamicCodeTest
 
 app = Flask(__name__)
 client = OpenAI()
@@ -15,17 +15,18 @@ SYSTEM_MESSAGE = {
                "asks a question unrelated to generating a coding answer, respond by telling the user, "
                "\"I can't help you with that, sorry\"."
 }
+
+
 def process_code(raw_code, language):
     if language == "java":
         code_match = re.search(r'(public class.*)', raw_code, re.DOTALL)
         if code_match:
             code = code_match.group(1).strip()
             class_name_match = re.search(r'public class\s+(\w+)', code)
-            print(class_name_match)
             if class_name_match:
                 class_name = class_name_match.group(1)
                 test_results = DynamicCodeTest.run_java_tests(code, class_name)
-                return test_results
+                return class_name, test_results
 
     elif language == "python":
         code_match = re.search(r'(def.*)', raw_code, re.DOTALL)
@@ -33,11 +34,11 @@ def process_code(raw_code, language):
             code = code_match.group(1).strip()
             function_name_match = re.search(r'def\s+(\w+)', code)
             if function_name_match:
-                function_name_match = function_name_match.group(1)
-                test_results = DynamicCodeTest.run_python_tests(code, function_name_match)
-                return test_results
+                function_name = function_name_match.group(1)
+                test_results = DynamicCodeTest.run_python_tests(code, function_name)
+                return function_name, test_results
+    return None, None
 
-    return None
 
 def stream_response(messages):
     try:
@@ -49,17 +50,27 @@ def stream_response(messages):
                 code_match = re.search(r'```(?:[^\n]*)?\n(.*?)```', message['content'], re.DOTALL)
                 if code_match:
                     raw_code = code_match.group(1)
+                    java_results = None
+                    python_results = None
                     # Process code
-                    java_results = process_code(raw_code, "java")
-                    python_results = process_code(raw_code, "python")
+                    if "public class" in raw_code:
+                        student_exercise, java_results = process_code(raw_code, "java")
+                    elif "def " in raw_code:
+                        student_exercise, python_results = process_code(raw_code, "python")
+                    else:
+                        student_exercise = None
+                        print("No valid code detected.")
 
                     if java_results or python_results:
                         results = java_results or python_results
+                        badge = exercises_badges.check_badge(student_exercise)
+                        database.assign_badge_if_tests_passed(1, badge, results)
                         final_message = (
                             f"These are the test results to the code that the student provided. Check to see if "
-                            f"they are all correct. If they are, congratulate them and say they "
-                            f"passed all tests. If not, provide a hint as to where they went "
-                            f"wrong by only naming what test(s) failed.\n\n{results}"
+                            f"they are all correct. Only if ALL TESTS are correct, congratulate them and say they "
+                            f"passed all tests, and let them know they earned the {badge} badge. "
+                            f"If they failed any test, provide a hint as to where they went wrong by only naming what "
+                            f"test(s) failed.\n\n{results}"
                         )
                         messages.append({"role": "assistant", "content": final_message})
 
