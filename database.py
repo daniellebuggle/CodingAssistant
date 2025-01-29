@@ -68,7 +68,7 @@ def add_badge(student_id, badge_name):
         connection.close()
 
 
-def assign_badge_if_tests_passed(student_id, badge_name, test_report):
+def assign_badge_if_tests_passed(student_id, badge_name, test_report, language):
     """
     Checks if all tests passed in the test report and assigns a badge if they did.
     :param student_id: Student ID Number in the students table.
@@ -76,8 +76,10 @@ def assign_badge_if_tests_passed(student_id, badge_name, test_report):
     :param test_report: Test results output from unit tests.
     :return: Message indicating if the badge was assigned or not.
     """
-    if "0 tests failed" in test_report:
-        if "FAILED" not in test_report:
-            add_badge(student_id, badge_name)
-            return f"All tests passed! Badge '{badge_name}' assigned to student ID {student_id}."
-        return "Not all tests passed. Badge not assigned."
+    if "0 tests failed" in test_report and language == "java":
+        add_badge(student_id, badge_name)
+        return f"All tests passed! Badge '{badge_name}' assigned to student ID {student_id}."
+    elif "FAILED" not in test_report and language == "python":
+        add_badge(student_id, badge_name)
+        return f"All tests passed! Badge '{badge_name}' assigned to student ID {student_id}."
+    return "Not all tests passed. Badge not assigned."

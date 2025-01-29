@@ -50,29 +50,28 @@ def stream_response(messages):
                 code_match = re.search(r'```(?:[^\n]*)?\n(.*?)```', message['content'], re.DOTALL)
                 if code_match:
                     raw_code = code_match.group(1)
-                    java_results = None
-                    python_results = None
                     # Process code
                     if "public class" in raw_code:
                         student_exercise, java_results = process_code(raw_code, "java")
+                        results = java_results
+                        badge = exercises_badges.check_badge(student_exercise)
+                        database.assign_badge_if_tests_passed(1, badge, results, "java")
                     elif "def " in raw_code:
                         student_exercise, python_results = process_code(raw_code, "python")
+                        results = python_results
+                        badge = exercises_badges.check_badge(student_exercise)
+                        database.assign_badge_if_tests_passed(1, badge, results, "python")
                     else:
-                        student_exercise = None
                         print("No valid code detected.")
 
-                    if java_results or python_results:
-                        results = java_results or python_results
-                        badge = exercises_badges.check_badge(student_exercise)
-                        database.assign_badge_if_tests_passed(1, badge, results)
-                        final_message = (
-                            f"These are the test results to the code that the student provided. Check to see if "
-                            f"they are all correct. Only if ALL TESTS are correct, congratulate them and say they "
-                            f"passed all tests, and let them know they earned the {badge} badge. "
-                            f"If they failed any test, provide a hint as to where they went wrong by only naming what "
-                            f"test(s) failed.\n\n{results}"
-                        )
-                        messages.append({"role": "assistant", "content": final_message})
+                    final_message = (
+                        f"These are the test results to the code that the student provided. Check to see if "
+                        f"they are all correct. Only if ALL TESTS are correct, congratulate them and say they "
+                        f"passed all tests, and let them know they earned the {badge} badge. "
+                        f"If they failed any test, provide a hint as to where they went wrong by only naming what "
+                        f"test(s) failed.\n\n{results}"
+                    )
+                    messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
         response = client.chat.completions.create(
