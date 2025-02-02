@@ -1,15 +1,15 @@
 import ast
 
 
-def contains_statement(code, statement_type):
+def contains_statement(code_submission, statement_type):
     """
     Checks if the given code contains a specific statement using the AST module.
 
-    :param code: The source code as a string
+    :param code_submission: The source code as a string
     :param statement_type: The type of statement to check for
     :return: True if the statement type is found, False otherwise
     """
-    tree = ast.parse(code)
+    tree = ast.parse(code_submission)
 
     for node in ast.walk(tree):
         if statement_type == 'while' and isinstance(node, ast.While):
