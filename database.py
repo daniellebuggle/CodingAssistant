@@ -71,6 +71,8 @@ def add_badge(student_id, badge_name):
 def assign_badge_if_tests_passed(student_id, badge_name, test_report, language, ast_check):
     """
     Checks if all tests passed in the test report and assigns a badge if they did.
+    :param language: Language tests were performed in.
+    :param ast_check: Boolean referring to AST checks.
     :param student_id: Student ID Number in the students table.
     :param badge_name: Name of the badge to be assigned to student.
     :param test_report: Test results output from unit tests.
