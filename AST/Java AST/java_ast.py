@@ -1,10 +1,8 @@
 import subprocess
 
-
-
-java_file = "Java AST/ASTParser.java"
-output_dir = "Java AST/out"
-javaparser_jar = "javaparser-core-3.26.3.jar"
+java_file = "ASTParser.java"
+output_dir = "out"
+javaparser_jar = "../../lib/javaparser-core-3.26.3.jar"
 
 
 print("Compiling ASTParser.java...")
