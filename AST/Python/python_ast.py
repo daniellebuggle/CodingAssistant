@@ -1,5 +1,18 @@
 import ast
 
+badge_mapping = {
+    "Python While-Loop": "while",
+    "Python For-Loop": "for",
+    "Python If-Elif": "if",
+    "Python OR Operator": "or"
+}
+
+
+def run_python_ast(code_submission, badge):
+    stmnt = badge_mapping.get(badge, "No Badge")
+    if not stmnt == "No Badge":
+        return contains_statement(code_submission, stmnt)
+
 
 def contains_statement(code_submission, statement_type):
     """
@@ -21,37 +34,3 @@ def contains_statement(code_submission, statement_type):
         elif statement_type == 'or' and isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or):
             return True
     return False
-
-
-code = """
-\"""
-Write a Python program that calculates the sum of all numbers in a given list. 
-\"""
-
-
-def calculate_sum(numbers):
-    \"""
-    Calculates the sum of all numbers in a given list.
-
-    :param numbers: List of numbers to sum up
-    :return: The sum of the list
-    \"""
-    total_sum = 0
-    for x in numbers:
-        total_sum += x
-    return total_sum
-
-
-def main():
-    numbers = [3, 5, 23, 6, 5, 1, 2, 9, 8]
-    total_sum = calculate_sum(numbers)
-    print("The sum of the list of numbers is:", total_sum)
-
-
-# Run the main function
-if __name__ == "__main__":
-    main()
-
-"""
-
-print(contains_statement(code, 'for'))
