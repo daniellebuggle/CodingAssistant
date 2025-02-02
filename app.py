@@ -3,6 +3,8 @@ import json
 from openai import OpenAI
 import re
 import exercises_badges, database, DynamicCodeTest
+from AST.Java import java_ast
+from AST.Python import python_ast
 
 app = Flask(__name__)
 client = OpenAI()
@@ -50,27 +52,41 @@ def stream_response(messages):
                 code_match = re.search(r'```(?:[^\n]*)?\n(.*?)```', message['content'], re.DOTALL)
                 if code_match:
                     raw_code = code_match.group(1)
+                    ast_results = False
                     # Process code
                     if "public class" in raw_code:
                         student_exercise, java_results = process_code(raw_code, "java")
                         results = java_results
                         badge = exercises_badges.check_badge(student_exercise)
-                        database.assign_badge_if_tests_passed(1, badge, results, "java")
+                        ast_results = java_ast.run_java_ast(raw_code, badge)
+                        database.assign_badge_if_tests_passed(1, badge, results, "java", ast_results)
                     elif "def " in raw_code:
                         student_exercise, python_results = process_code(raw_code, "python")
                         results = python_results
                         badge = exercises_badges.check_badge(student_exercise)
-                        database.assign_badge_if_tests_passed(1, badge, results, "python")
+                        ast_results = python_ast.run_python_ast(raw_code, badge)
+                        database.assign_badge_if_tests_passed(1, badge, results, "python",
+                                                              ast_results)
                     else:
                         print("No valid code detected.")
 
-                    final_message = (
-                        f"These are the test results to the code that the student provided. Check to see if "
-                        f"they are all correct. Only if ALL TESTS are correct, congratulate them and say they "
-                        f"passed all tests, and let them know they earned the {badge} badge. "
-                        f"If they failed any test, provide a hint as to where they went wrong by only naming what "
-                        f"test(s) failed.\n\n{results}"
-                    )
+                    if ast_results:
+                        final_message = (
+                            f"These are the test results to the code that the student provided. Check to see if "
+                            f"they are all correct. Only if ALL TESTS are correct, you should congratulate them and say "
+                            f"they passed all tests, and let them know they earned the {badge} badge. If they failed any"
+                            f" test, provide a hint as to where they went wrong by only naming what test(s) failed."
+                            f"\n\n{results}"
+                        )
+                    else:
+                        final_message = (
+                            f"DO NOT CONGRATULATE THE USER. These are the test results to the code that the student "
+                            f"provided. Check to see if they are all correct. If they are say they passed all of the "
+                            f"unit tests but they failed to use the coding concept to earn the {badge} badge. If they "
+                            f"failed any test, provide a hint as to where they went wrong by only naming what test(s) "
+                            f"failed."
+                            f"\n\n{results}"
+                        )
                     messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
@@ -97,7 +113,6 @@ def stream_response(messages):
 def chat_completions():
     data = request.get_json()
     print(json.dumps(data, indent=4))
-
     messages = data.get("messages", [])
     if not messages:
         return jsonify({"error": "No messages provided"}), 400

@@ -64,7 +64,7 @@ def run_java_tests(code, class_name):
         test_dir = "test"
 
         test_file = f"{class_name}Test.java"
-        junit_jar = "junit-platform-console-standalone-1.11.4.jar"
+        junit_jar = "lib/junit-platform-console-standalone-1.11.4.jar"
 
         # Step 1: Write the Java class to a file
         with open(f"src/{class_name}.java", "w") as java_file:
