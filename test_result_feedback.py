@@ -241,3 +241,44 @@ def provide_zero_shot_prompt(results, badge, ast_results):
     to use the correct coding concept to earn the {badge} badge.
     """
     return prompt
+
+
+def provide_chain_of_thought_prompt(results, badge, ast_results):
+    prompt = f"""
+    
+        Q: Did the student's code pass all tests:
+        A: - If there are any failures mentioned or tests failed quoted in the test output then the student's code did not
+            pass all tests. 
+           - If any tests failed, identify which ones failed and why.
+           - If all tests passed successfully, the student's code passed all tests.
+        
+        Q: Did the student's code use the required coding construct:
+        A: - AST results indicate whether the correct coding concept was applied.
+           - If AST results are `True`, the correct concept was used.
+           - If AST results are `False`, the student did not use the required construct.
+           
+        Q: Did the student earn the {badge} badge:
+        A: - If all tests passed and AST results are `True`: Congratulate the student and let them know they earned the badge.
+           - If all tests passed but AST results are `False`: Inform the student that they did not use the correct concept 
+             and did not earn the badge.
+           - If any tests failed: Provide a little feedback on which test(s) failed and a hint as to what needs to be fixed.
+            
+        Now let's carefully analyse the test results and AST results to check if the student earn the {badge} badge.
+
+        Test Results:
+        {results}
+
+        AST Results:
+        {ast_results}
+
+        Based on the above analysis, generate a response following this structure:
+
+        - Acknowledge the test results.
+        - If tests failed, mention the specific failure and provide a hint as to what needs to be fixed.
+        - If tests passed, check AST results to determine if the badge is awarded.
+        - Provide a final decision on whether the student earned the {badge} badge.
+        - Keep the response concise and supportive.
+
+        Generate the response now:
+        """
+    return prompt

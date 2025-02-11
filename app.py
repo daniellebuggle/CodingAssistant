@@ -72,7 +72,10 @@ def stream_response(messages):
                         print("No valid code detected.")
 
                     ast_prompt = f"AST Test Results:\n {ast_results}"
-                    final_message = tf.provide_few_shot_prompt(results, badge, ast_prompt)
+                    #final_message = tf.provide_few_shot_prompt(results, badge, ast_prompt)
+
+                    final_message = tf.provide_chain_of_thought_prompt(results, badge, ast_prompt)
+                    print(final_message)
                     messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
