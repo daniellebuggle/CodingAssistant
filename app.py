@@ -66,18 +66,13 @@ def stream_response(messages):
                         results = python_results
                         badge = exercises_badges.check_badge(student_exercise)
                         ast_results = python_ast.run_python_ast(raw_code, badge)
-                        badge_assignment = database.assign_badge_if_tests_passed(1, badge, results, "python",
+                        database.assign_badge_if_tests_passed(1, badge, results, "python",
                                                               ast_results)
-                        print(badge_assignment)
                     else:
                         print("No valid code detected.")
 
                     ast_prompt = f"AST Test Results:\n {ast_results}"
                     final_message = tf.provide_few_shot_prompt(results, badge, ast_prompt)
-
-                    print(final_message)
-
-
                     messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
