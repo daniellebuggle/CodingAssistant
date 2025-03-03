@@ -4,3 +4,4 @@ vcs.xml
 src/
 out/
 .env
+PyDex/
