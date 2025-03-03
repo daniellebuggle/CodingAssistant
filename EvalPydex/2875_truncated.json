@@ -1,0 +1,41 @@
+{
+    "problem_ID": "2875",
+    "statement": "Write a program to print the Alphabet pattern, as shown below. The input will be a number n, such that 1 <= n <= 26.\n\nNOTE: \n1. There is a single _ (underscore) at the start, at the end, and between two letters on each line.\n\n\nInput: 3\nOutput\n_A_\n_A_B_\n_A_B_C_\n\nInput: 4\nOutput\n_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n\n\n\n",
+    "IO_example": [
+        {
+            "IO_number": "19862",
+            "input": "3",
+            "output": "_A_\n_A_B_\n_A_B_C_\n"
+        },
+        {
+            "IO_number": "19863",
+            "input": "4",
+            "output": "_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n"
+        },
+        {
+            "IO_number": "19864",
+            "input": "1",
+            "output": "_A_\n"
+        },
+        {
+            "IO_number": "19865",
+            "input": "26",
+            "output": "_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n_A_B_C_D_E_\n_A_B_C_D_E_F_\n_A_B_C_D_E_F_G_\n_A_B_C_D_E_F_G_H_\n_A_B_C_D_E_F_G_H_I_\n_A_B_C_D_E_F_G_H_I_J_\n_A_B_C_D_E_F_G_H_I_J_K_\n_A_B_C_D_E_F_G_H_I_J_K_L_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_U_V_W_X_Y_Z_\n"
+        },
+        {
+            "IO_number": "19866",
+            "input": "13",
+            "output": "_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n_A_B_C_D_E_\n_A_B_C_D_E_F_\n_A_B_C_D_E_F_G_\n_A_B_C_D_E_F_G_H_\n_A_B_C_D_E_F_G_H_I_\n_A_B_C_D_E_F_G_H_I_J_\n_A_B_C_D_E_F_G_H_I_J_K_\n_A_B_C_D_E_F_G_H_I_J_K_L_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_\n"
+        },
+        {
+            "IO_number": "19867",
+            "input": "20",
+            "output": "_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n_A_B_C_D_E_\n_A_B_C_D_E_F_\n_A_B_C_D_E_F_G_\n_A_B_C_D_E_F_G_H_\n_A_B_C_D_E_F_G_H_I_\n_A_B_C_D_E_F_G_H_I_J_\n_A_B_C_D_E_F_G_H_I_J_K_\n_A_B_C_D_E_F_G_H_I_J_K_L_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_\n_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O_P_Q_R_S_T_\n"
+        }
+    ],
+    "truncated_solutions": [
+        "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"",
+        "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n",
+        "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    print('_',end='')\n    for j in range(i+1):\n        print(LETTERS[j], end='_')"
+    ]
+}

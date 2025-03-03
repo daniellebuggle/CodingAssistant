@@ -1,0 +1,71 @@
+{
+    "problem_ID": "2882",
+    "statement": "You've saved the password to access your Bitcoins on your personal computer. You have created an application that encrypts the password. To decrypt, you need to perform an operation between two integers, say A and B, as described below - \n\n1) Let X and Y be the numbers obtained by REVERSING A and B. For example, the reverse of 123 is 321, and the reverse of 320 is 23 (leading zeroes are discarded)\n\n2) If both X and Y are PRIME, then the answer is X + Y\n\n3) If EXACTLY ONE of X and Y is PRIME, then the answer is A +  B\n\n4) Otherwise, the answer is A * B\n\nYour task is to write a program to help you perform this operation.\n\nInput: Two COMMA-separated integers A and B. There can be any number of white-spaces in the input.\nOutput : A single integer that is the result of applying the operation described above on the input integers.\n\nConstraints:\n$1 \\leq A, B \\leq 10000$\n\nExample:\nInput:\n142 123\nOutput:\n265\n\nExplanation : The reverse of 142 is 241 (prime) and that of 123 is 321 (not prime). Hence the answer is A + B = 142 + 123 = 265\n\nIMPORTANT : Make sure your code is modular i.e. you REUSE as much of the code as possible USING FUNCTIONS. You may LOSE MARKS if this guideline is not followed.",
+    "IO_example": [
+        {
+            "IO_number": "19913",
+            "input": "142,  123",
+            "output": "265\n"
+        },
+        {
+            "IO_number": "19914",
+            "input": "4, 16",
+            "output": "20\n"
+        },
+        {
+            "IO_number": "19915",
+            "input": "4, 61",
+            "output": "244\n"
+        },
+        {
+            "IO_number": "19916",
+            "input": "2, 3",
+            "output": "5\n"
+        },
+        {
+            "IO_number": "19917",
+            "input": "2, 13",
+            "output": "33\n"
+        },
+        {
+            "IO_number": "19918",
+            "input": "2, 543",
+            "output": "545\n"
+        },
+        {
+            "IO_number": "19919",
+            "input": "2, 543",
+            "output": "545\n"
+        },
+        {
+            "IO_number": "19920",
+            "input": "2, 2",
+            "output": "4\n"
+        },
+        {
+            "IO_number": "19921",
+            "input": "2, 2",
+            "output": "4\n"
+        },
+        {
+            "IO_number": "19922",
+            "input": "7901,   9197",
+            "output": "9016\n"
+        },
+        {
+            "IO_number": "19923",
+            "input": "1907,   7919",
+            "output": "15101533\n"
+        },
+        {
+            "IO_number": "19924",
+            "input": "1, 13",
+            "output": "14\n"
+        }
+    ],
+    "truncated_solutions": [
+        "def revNum(n):\n    ''' reverse and return reverese of a number encoded as string'''",
+        "def revNum(n):\n    ''' reverse and return reverese of a number encoded as string'''\n    return int(n[::-1])\n\ndef isPrime(n):\n    if n == 2:\n        return True\n    if n == 1:\n        return False\n    if n % 2 == 0:\n        return False\n    i = 3",
+        "def revNum(n):\n    ''' reverse and return reverese of a number encoded as string'''\n    return int(n[::-1])\n\ndef isPrime(n):\n    if n == 2:\n        return True\n    if n == 1:\n        return False\n    if n % 2 == 0:\n        return False\n    i = 3\n    while (i*i <= n):\n        if n % i == 0:\n            return False\n        i += 2\n    return True\n\ndef main():\n    a, b = input().split(',')\n    c, d = revNum(a), revNum(b)\n    a, b = int(a), int(b)\n    if (isPrime(c)): \n        if (isPrime(d)):\n            print(c + d)\n        else:\n            print(a + b)\n    else:\n        if (isPrime(d)):\n            print(a + b)\n        else:\n            print(a * b)\n"
+    ]
+}

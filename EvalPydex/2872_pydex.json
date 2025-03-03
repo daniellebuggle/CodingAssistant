@@ -1,0 +1,47 @@
+{
+    "problem_ID": "2872",
+    "statement": "Write a program as per the following specification: The input to the program is a string. The string may contain substrings 'not' and 'bad'. There are either 0 or 1 occurrences of 'not' and 'bad'. If  'bad' comes after 'not', then \n the program outputs a string such that the whole 'not...bad' substring in the input is replaced by 'good'. Otherwise, it prints the original string itself.\n\nNOTE: In this question, the input strings for evaluation may or may not contain the substrings 'not' and 'bad' as substrings. Even if the input contains both, it is not guaranteed that 'bad' comes after 'not'.\n\nEXAMPLES:\nINPUT: The song is good.\nOUTPUT: The song is good.\n\nINPUT: Food is bad? not at all.\nOUTPUT: Food is bad? not at all.\n\nINPUT: The lyrics is not that bad!\nOUTPUT: The lyrics is good!\n",
+    "IO_example": [
+        {
+            "IO_number": "19836",
+            "input": "The lyrics is not that bad!",
+            "output": "The lyrics is good!\n"
+        },
+        {
+            "IO_number": "19837",
+            "input": "Food is bad? not at all.",
+            "output": "Food is bad? not at all.\n"
+        },
+        {
+            "IO_number": "19838",
+            "input": "The song is good.",
+            "output": "The song is good.\n"
+        },
+        {
+            "IO_number": "19839",
+            "input": "The song is not extremely good.",
+            "output": "The song is not extremely good.\n"
+        },
+        {
+            "IO_number": "19840",
+            "input": "not bad",
+            "output": "good\n"
+        },
+        {
+            "IO_number": "19841",
+            "input": "not very bad",
+            "output": "good\n"
+        },
+        {
+            "IO_number": "19842",
+            "input": "heynotatallbadatall",
+            "output": "heygoodatall\n"
+        },
+        {
+            "IO_number": "19843",
+            "input": "notbad",
+            "output": "good\n"
+        }
+    ],
+    "reference_solution": "inp = input()\n\nni = inp.find('not')\nbi = inp.find('bad')\nif ni == -1:\n    # 'not' not found.\n    print(inp)\nelif bi == -1:\n    # 'bad' not found\n    print(inp)\nelif ni > bi:\n    # 'not' after 'bad'\n    print(inp)\nelse:\n    # all conditions satisfied.\n    bi = bi + len('bad')\n    op = inp[:ni] + 'good' + inp[bi:]\n    print(op)\n    "
+}
