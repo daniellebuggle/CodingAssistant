@@ -96,6 +96,7 @@ def stream_response(messages):
             stream=True  # Enable streaming
         )
 
+        # print(response)
         # Iterate over the streamed response
         for chunk in response:
             if hasattr(chunk.choices[0].delta, "content") and chunk.choices[0].delta.content is not None:
@@ -112,13 +113,21 @@ def stream_response(messages):
 @app.route('/v1/chat/completions', methods=['POST'])
 def chat_completions():
     data = request.get_json()
-    print(json.dumps(data, indent=4))
     messages = data.get("messages", [])
     if not messages:
         return jsonify({"error": "No messages provided"}), 400
+
     # Add system message if not already present
-    if all(msg["role"] != "system" for msg in messages):
-        messages.insert(0, SYSTEM_MESSAGE)
+    messages_to_keep = []
+
+    for msg in messages:
+        if not (msg["role"] == "system" and msg["content"] != SYSTEM_MESSAGE["content"]):
+            messages_to_keep.append(msg)
+
+    messages = messages_to_keep
+    messages.insert(0, SYSTEM_MESSAGE)
+
+    print(json.dumps(messages, indent=4))
 
     # Return a streaming response in JSON format
     return Response(
