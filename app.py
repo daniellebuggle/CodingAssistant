@@ -46,8 +46,9 @@ def stream_response(messages):
     try:
         for message in messages:
             # Phrase to check for
-            phrase = 'Test the highlighted code.'
-            if phrase in message['content']:
+            code_phrase = 'Test the highlighted code.'
+            json_phrase = 'Export the current chat session to JSON format.'
+            if code_phrase in message['content']:
                 # Extract the code block within ``` symbols
                 code_match = re.search(r'```(?:[^\n]*)?\n(.*?)```', message['content'], re.DOTALL)
                 if code_match:
@@ -88,6 +89,8 @@ def stream_response(messages):
                             f"\n\n{results}"
                         )
                     messages.append({"role": "assistant", "content": final_message})
+            elif json_phrase in message['content']:
+                messages.append({"role": "assistant", "content": json_phrase})
 
         # Stream the response from the OpenAI model
         response = client.chat.completions.create(
@@ -96,7 +99,6 @@ def stream_response(messages):
             stream=True  # Enable streaming
         )
 
-        # print(response)
         # Iterate over the streamed response
         for chunk in response:
             if hasattr(chunk.choices[0].delta, "content") and chunk.choices[0].delta.content is not None:
