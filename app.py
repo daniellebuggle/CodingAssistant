@@ -5,6 +5,7 @@ import re
 import exercises_badges, database, DynamicCodeTest
 from AST.Java import java_ast
 from AST.Python import python_ast
+import test_result_feedback as tf
 
 app = Flask(__name__)
 client = OpenAI()
@@ -70,23 +71,11 @@ def stream_response(messages):
                     else:
                         print("No valid code detected.")
 
-                    if ast_results:
-                        final_message = (
-                            f"These are the test results to the code that the student provided. Check to see if "
-                            f"they are all correct. Only if ALL TESTS are correct, you should congratulate them and say "
-                            f"they passed all tests, and let them know they earned the {badge} badge. If they failed any"
-                            f" test, provide a hint as to where they went wrong by only naming what test(s) failed."
-                            f"\n\n{results}"
-                        )
-                    else:
-                        final_message = (
-                            f"DO NOT CONGRATULATE THE USER. These are the test results to the code that the student "
-                            f"provided. Check to see if they are all correct. If they are say they passed all of the "
-                            f"unit tests but they failed to use the coding concept to earn the {badge} badge. If they "
-                            f"failed any test, provide a hint as to where they went wrong by only naming what test(s) "
-                            f"failed."
-                            f"\n\n{results}"
-                        )
+                    ast_prompt = f"AST Test Results:\n {ast_results}"
+                    #final_message = tf.provide_few_shot_prompt(results, badge, ast_prompt)
+
+                    final_message = tf.provide_chain_of_thought_prompt(results, badge, ast_prompt)
+                    print(final_message)
                     messages.append({"role": "assistant", "content": final_message})
 
         # Stream the response from the OpenAI model
