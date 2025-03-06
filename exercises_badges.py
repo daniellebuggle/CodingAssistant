@@ -13,3 +13,7 @@ exercise_to_badge = {
 
 def check_badge(exercise_name):
     return exercise_to_badge.get(exercise_name, "Badge not found")
+
+
+def get_all_badges():
+    return list(set(exercise_to_badge.values()))
