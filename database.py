@@ -25,6 +25,24 @@ def connect_db():
         print(f"Error while connecting to MySQL: {e}")
         return None
 
+def get_badges(student_id):
+    """
+    Retrieve all badges assigned to a specific student.
+    :param student_id: Student ID Number in the students table.
+    :return: List of badge names or an error message.
+    """
+    connection = connect_db()
+    if connection:
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT badge_name FROM badges WHERE student_id = %s", (student_id,))
+                badges = cursor.fetchall()
+                return [badge[0] for badge in badges] if badges else []
+        except Error as e:
+            print(f"Error while retrieving badges: {e}")
+            return None
+        finally:
+            connection.close()
 
 def add_student(student_name):
     """
