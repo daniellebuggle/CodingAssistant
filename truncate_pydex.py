@@ -72,7 +72,6 @@ def truncate_response_AI(code, badges):
     return "\n".join(filtered_lines)
 
 
-
 def truncate_solution(solution, strategy):
     """
     Truncate the given solution based on the specified strategy.
@@ -131,18 +130,3 @@ def process_dataset(dataset):
     }
 
     return processed_data
-
-code_example = """
-for i in range(5):
-    print(i)
-
-if x > 0:
-    print("Positive")
-
-while x < 10:
-    print(x)
-    x += 1
-"""
-
-badges = ['Java For-Loop', 'Java If-Else', 'Python While-Loop']
-print(truncate_response_AI(code_example, badges))
