@@ -1,0 +1,42 @@
+{
+    "problem_ID": "2877",
+    "statement": "Write a python program to read from input a string. The input contains COMMA separated string values.\n \nThe output of the program is the count of string values where \n(a) the length is >= 2;  AND\n(b) the first and last character of the string value are the same.\n\nInput:\nabc,xyz,aba,1221,1\t\nOutput:\n2\n\nInput:\nabc, xyz , alpha\nOutput:\n1\n\n[Note that the second string ( xyz ) has SPACE at the start and at the end; while the last string ( alpha) has SPACE only at the start.\n",
+    "IO_example": [
+        {
+            "IO_number": "19874",
+            "input": "abc,xyz,aba,1221,1",
+            "output": "2\n"
+        },
+        {
+            "IO_number": "19875",
+            "input": "abc, xyz , alpha",
+            "output": "1\n"
+        },
+        {
+            "IO_number": "19876",
+            "input": "www,google,.com.",
+            "output": "2\n"
+        },
+        {
+            "IO_number": "19877",
+            "input": "i am ,alba, a ,bbb",
+            "output": "3\n"
+        },
+        {
+            "IO_number": "19878",
+            "input": "aba",
+            "output": "1\n"
+        },
+        {
+            "IO_number": "19879",
+            "input": ",,,,,",
+            "output": "0\n"
+        },
+        {
+            "IO_number": "19880",
+            "input": "abc,def",
+            "output": "0\n"
+        }
+    ],
+    "reference_solution": "myinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:\n    if len(v) >= 2 and v[0]==v[-1]:\n        count += 1\n    \nprint(count)"
+}

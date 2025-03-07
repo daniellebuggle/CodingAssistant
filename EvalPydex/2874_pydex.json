@@ -1,0 +1,42 @@
+{
+    "problem_ID": "2874",
+    "statement": "Write a program to print an isosceles right triangle as shown in the examples. The equal sides of the triangle are created using N stars (*). N is taken as input by the program.\n\nInput: 3\nOutput:\n*\n**\n***\n\nInput: 4\nOutput:\n*\n**\n***\n****\n\nNOTE: \n1. The length of the side is number of stars in it. Do not get confused by the display.\n2. Make sure that there are no extra spaces anywhere in the output.\n3. The input to the program will be an integer > 0.\n",
+    "IO_example": [
+        {
+            "IO_number": "19855",
+            "input": "3",
+            "output": "*\n**\n***\n"
+        },
+        {
+            "IO_number": "19856",
+            "input": "4",
+            "output": "*\n**\n***\n****\n"
+        },
+        {
+            "IO_number": "19857",
+            "input": "10",
+            "output": "*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n"
+        },
+        {
+            "IO_number": "19858",
+            "input": "13",
+            "output": "*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n"
+        },
+        {
+            "IO_number": "19859",
+            "input": "1",
+            "output": "*\n"
+        },
+        {
+            "IO_number": "19860",
+            "input": "6",
+            "output": "*\n**\n***\n****\n*****\n******\n"
+        },
+        {
+            "IO_number": "19861",
+            "input": "16",
+            "output": "*\n**\n***\n****\n*****\n******\n*******\n********\n*********\n**********\n***********\n************\n*************\n**************\n***************\n****************\n"
+        }
+    ],
+    "reference_solution": "N = int(input())\n\nfor i in range(N):\n    for j in range(i+1):\n        print('*',end='')\n    print()\n    "
+}

@@ -1,0 +1,51 @@
+{
+    "problem_ID": "2873",
+    "statement": "Armstrong number is a number that is equal to the sum of cubes of its digits. For example, 0, 1, 153, 370, 371 and 407 are the Armstrong numbers.\nWrite a program to check if an input number is an Armstrong number. The output should match the format as given in the example below.\n\nNOTE: Use input() without any prompt to read the number.\n\n\nInput: 371\nOutput: Sum of Cubes is 371. It is the same as the number 371.\nInput: 5\nOutput: Sum of Cubes is 125. It is NOT same as the number 5.\n",
+    "IO_example": [
+        {
+            "IO_number": "19847",
+            "input": "371",
+            "output": "Sum of Cubes is 371. It is the same as the number 371.\n"
+        },
+        {
+            "IO_number": "19848",
+            "input": "5",
+            "output": "Sum of Cubes is 125. It is NOT same as the number 5.\n"
+        },
+        {
+            "IO_number": "19849",
+            "input": "12639369517103790328947807201478392",
+            "output": "Sum of Cubes is 7752. It is NOT same as the number 12639369517103790328947807201478392.\n"
+        },
+        {
+            "IO_number": "19850",
+            "input": "10203020",
+            "output": "Sum of Cubes is 44. It is NOT same as the number 10203020.\n"
+        },
+        {
+            "IO_number": "19851",
+            "input": "1634",
+            "output": "Sum of Cubes is 308. It is NOT same as the number 1634.\n"
+        },
+        {
+            "IO_number": "19852",
+            "input": "407",
+            "output": "Sum of Cubes is 407. It is the same as the number 407.\n"
+        },
+        {
+            "IO_number": "19853",
+            "input": "0",
+            "output": "Sum of Cubes is 0. It is the same as the number 0.\n"
+        },
+        {
+            "IO_number": "19854",
+            "input": "1",
+            "output": "Sum of Cubes is 1. It is the same as the number 1.\n"
+        }
+    ],
+    "truncated_solutions": [
+        "nums = input()\nnumi = int(nums)",
+        "nums = input()\nnumi = int(nums)\n\nsum = 0\nfor ds in nums:\n    di = int(ds)\n    sum += di ** 3\n\nsame = \"the\"",
+        "nums = input()\nnumi = int(nums)\n\nsum = 0\nfor ds in nums:\n    di = int(ds)\n    sum += di ** 3\n\nsame = \"the\"\nif (sum != numi):\n    same = \"NOT\"\n"
+    ]
+}
