@@ -126,7 +126,33 @@ def process_dataset(dataset):
         "problem_ID": dataset.get("problem_ID"),
         "statement": dataset.get("statement"),
         "IO_example": dataset.get("IO_example"),
-        "truncated_solutions": truncate_solutions
+        "truncated_solutions": truncate_solutions,
+        "reference_solution": reference_solution
     }
 
     return processed_data
+
+
+def extract_and_write_truncated_data(input_filename, output_filename):
+    with open(input_filename, "r", encoding="utf-8") as infile:
+        data = json.load(infile)  # Adjust this if your file is not JSON
+
+    processed_data = process_dataset(data)
+
+
+    # Write to a new file
+    with open(output_filename, "w", encoding="utf-8") as outfile:
+        json.dump(processed_data, outfile, indent=4)
+
+    print(f"Extracted data written to {output_filename}")
+
+"""list_of_inputs = ["EvalPydex/2870_pydex.json", "EvalPydex/2872_pydex.json", "EvalPydex/2873_pydex.json",
+                   "EvalPydex/2874_pydex.json", "EvalPydex/2875_pydex.json",
+                   "EvalPydex/2877_pydex.json", "EvalPydex/2882_pydex.json", "EvalPydex/2920_pydex.json"]
+
+list_of_outputs = ["EvalPydex/2870_truncated.json", "EvalPydex/2872_truncated.json", "EvalPydex/2873_truncated.json",
+                 "EvalPydex/2874_truncated.json", "EvalPydex/2875_truncated.json",
+                 "EvalPydex/2877_truncated.json", "EvalPydex/2882_truncated.json", "EvalPydex/2920_truncated.json"]
+
+for i in range(len(list_of_inputs)):
+    extract_and_write_truncated_data(list_of_inputs[i], list_of_outputs[i])"""
