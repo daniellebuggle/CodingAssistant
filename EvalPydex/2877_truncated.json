@@ -42,5 +42,6 @@
         "myinput=input()\nvs = myinput.split(',')",
         "myinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:",
         "myinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:\n    if len(v) >= 2 and v[0]==v[-1]:\n        count += 1\n    "
-    ]
+    ],
+    "reference_solution": "myinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:\n    if len(v) >= 2 and v[0]==v[-1]:\n        count += 1\n    \nprint(count)"
 }

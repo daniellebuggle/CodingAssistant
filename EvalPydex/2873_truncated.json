@@ -47,5 +47,6 @@
         "nums = input()\nnumi = int(nums)",
         "nums = input()\nnumi = int(nums)\n\nsum = 0\nfor ds in nums:\n    di = int(ds)\n    sum += di ** 3\n\nsame = \"the\"",
         "nums = input()\nnumi = int(nums)\n\nsum = 0\nfor ds in nums:\n    di = int(ds)\n    sum += di ** 3\n\nsame = \"the\"\nif (sum != numi):\n    same = \"NOT\"\n"
-    ]
+    ],
+    "reference_solution": "nums = input()\nnumi = int(nums)\n\nsum = 0\nfor ds in nums:\n    di = int(ds)\n    sum += di ** 3\n\nsame = \"the\"\nif (sum != numi):\n    same = \"NOT\"\n\nprint ('Sum of Cubes is {}. It is {} same as the number {}.'.format(sum, same, nums))\n    \n\n"
 }

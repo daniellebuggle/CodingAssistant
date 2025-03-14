@@ -37,5 +37,6 @@
         "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"",
         "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n",
         "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    print('_',end='')\n    for j in range(i+1):\n        print(LETTERS[j], end='_')"
-    ]
+    ],
+    "reference_solution": "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    print('_',end='')\n    for j in range(i+1):\n        print(LETTERS[j], end='_')\n    print()\n    "
 }

@@ -42,5 +42,6 @@
         "N = int(input())\n",
         "N = int(input())\n",
         "N = int(input())\n\nfor i in range(N):\n    for j in range(i+1):\n        print('*',end='')"
-    ]
+    ],
+    "reference_solution": "N = int(input())\n\nfor i in range(N):\n    for j in range(i+1):\n        print('*',end='')\n    print()\n    "
 }

@@ -47,5 +47,6 @@
         "inp = input()\n",
         "inp = input()\n\nni = inp.find('not')\nbi = inp.find('bad')",
         "inp = input()\n\nni = inp.find('not')\nbi = inp.find('bad')\nif ni == -1:\n    # 'not' not found.\n    print(inp)\nelif bi == -1:\n    # 'bad' not found\n    print(inp)\nelif ni > bi:\n    # 'not' after 'bad'\n    print(inp)\nelse:\n    # all conditions satisfied.\n    bi = bi + len('bad')\n    op = inp[:ni] + 'good' + inp[bi:]"
-    ]
+    ],
+    "reference_solution": "inp = input()\n\nni = inp.find('not')\nbi = inp.find('bad')\nif ni == -1:\n    # 'not' not found.\n    print(inp)\nelif bi == -1:\n    # 'bad' not found\n    print(inp)\nelif ni > bi:\n    # 'not' after 'bad'\n    print(inp)\nelse:\n    # all conditions satisfied.\n    bi = bi + len('bad')\n    op = inp[:ni] + 'good' + inp[bi:]\n    print(op)\n    "
 }

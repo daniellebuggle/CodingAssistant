@@ -57,5 +57,6 @@
         "import string\n",
         "import string\n\nalphabet = set(string.ascii_lowercase) \n  \ndef ispangram(s): \n    schar = set(s.lower())\n    return (schar >= alphabet, sorted(list(alphabet - schar)))\n      \n# Driver code \ns = input()\nflag, missing = ispangram(s)",
         "import string\n\nalphabet = set(string.ascii_lowercase) \n  \ndef ispangram(s): \n    schar = set(s.lower())\n    return (schar >= alphabet, sorted(list(alphabet - schar)))\n      \n# Driver code \ns = input()\nflag, missing = ispangram(s)\nif flag:\n    print(\"Yes, the string is a pangram.\") \nelse: \n    misstr = \", \".join(missing)"
-    ]
+    ],
+    "reference_solution": "import string\n\nalphabet = set(string.ascii_lowercase) \n  \ndef ispangram(s): \n    schar = set(s.lower())\n    return (schar >= alphabet, sorted(list(alphabet - schar)))\n      \n# Driver code \ns = input()\nflag, missing = ispangram(s)\nif flag:\n    print(\"Yes, the string is a pangram.\") \nelse: \n    misstr = \", \".join(missing)\n    print(\"No, the string is NOT a pangram. Missing letter(s) is(are) {}.\".format(misstr)) \n    \n"
 }

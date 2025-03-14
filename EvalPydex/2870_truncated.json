@@ -42,5 +42,6 @@
         "name = input()\ncname = name.upper()",
         "name = input()\ncname = name.upper()\nrname = cname[::-1]\n",
         "name = input()\ncname = name.upper()\nrname = cname[::-1]\n\nif cname == rname:\n    print('{} is a palindrome.'.format(name))\nelse:"
-    ]
+    ],
+    "reference_solution": "name = input()\ncname = name.upper()\nrname = cname[::-1]\n\nif cname == rname:\n    print('{} is a palindrome.'.format(name))\nelse:\n    print('{} is NOT a palindrome.'.format(name))"
 }
