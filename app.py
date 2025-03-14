@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, Response
-import json
 from openai import OpenAI
 import re
 import exercises_badges, database, DynamicCodeTest
