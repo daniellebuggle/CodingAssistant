@@ -1,0 +1,33 @@
+{
+    "problem_ID": "2870",
+    "statement": "Write a program that accepts a string from the user and prints whether it is a palindrome or not. Ignore case of characters.\n\nNOTE: DO NOT print any prompt in input().\n\nEXAMPLE:\nINPUT: Nitin\nOUTPUT: Nitin is a palindrome.\n\nINPUT: Uma\nOUTPUT: Uma is NOT a palindrome.",
+    "list_of_badges": [
+        "Python For-Loop"
+    ],
+    "simulated_students": [
+        {
+            "question": "Write a program that accepts a string from the user and prints whether it is a palindrome or not. Ignore case of characters.\n\nNOTE: DO NOT print any prompt in input().\n\nEXAMPLE:\nINPUT: Nitin\nOUTPUT: Nitin is a palindrome.\n\nINPUT: Uma\nOUTPUT: Uma is NOT a palindrome.\n This is the code I have written so far. \nname = input()\ncname = name.upper()",
+            "student_code": "name = input()\ncname = name.upper()",
+            "ai_response": "```python\nname = input()\nif name.lower() == name[::-1].lower():\n    print(f\"{name} is a palindrome.\")\nelse:\n    print(f\"{name} is NOT a palindrome.\")\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nname = input()\"}\n",
+            "ai_status": "Incorrect",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a program that accepts a string from the user and prints whether it is a palindrome or not. Ignore case of characters.\n\nNOTE: DO NOT print any prompt in input().\n\nEXAMPLE:\nINPUT: Nitin\nOUTPUT: Nitin is a palindrome.\n\nINPUT: Uma\nOUTPUT: Uma is NOT a palindrome.\n This is the code I have written so far. \nname = input()\ncname = name.upper()\nrname = cname[::-1]\n",
+            "student_code": "name = input()\ncname = name.upper()\nrname = cname[::-1]\n",
+            "ai_response": "```python\nname = input()\ncname = name.lower()\nrname = cname[::-1]\n\nif cname == rname:\n    print(f\"{name} is a palindrome.\")\nelse:\n    print(f\"{name} is NOT a palindrome.\")\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nname = input()\\ncname = name.lower()\\nrname = cname[::-1]\\n\"}\n",
+            "ai_status": "Incorrect",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a program that accepts a string from the user and prints whether it is a palindrome or not. Ignore case of characters.\n\nNOTE: DO NOT print any prompt in input().\n\nEXAMPLE:\nINPUT: Nitin\nOUTPUT: Nitin is a palindrome.\n\nINPUT: Uma\nOUTPUT: Uma is NOT a palindrome.\n This is the code I have written so far. \nname = input()\ncname = name.upper()\nrname = cname[::-1]\n\nif cname == rname:\n    print('{} is a palindrome.'.format(name))\nelse:",
+            "student_code": "name = input()\ncname = name.upper()\nrname = cname[::-1]\n\nif cname == rname:\n    print('{} is a palindrome.'.format(name))\nelse:",
+            "ai_response": "```python\nname = input()\ncname = name.lower()\nrname = cname[::-1]\n\nif cname == rname:\n    print('{} is a palindrome.'.format(name))\nelse:\n    print('{} is NOT a palindrome.'.format(name))\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nname = input()\\ncname = name.lower()\\nrname = cname[::-1]\\n\"}\n",
+            "ai_status": "Incorrect",
+            "ast_guardrail_status": "Correct"
+        }
+    ]
+}

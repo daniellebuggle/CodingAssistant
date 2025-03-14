@@ -1,0 +1,34 @@
+{
+    "problem_ID": "2874",
+    "statement": "Write a program to print an isosceles right triangle as shown in the examples. The equal sides of the triangle are created using N stars (*). N is taken as input by the program.\n\nInput: 3\nOutput:\n*\n**\n***\n\nInput: 4\nOutput:\n*\n**\n***\n****\n\nNOTE: \n1. The length of the side is number of stars in it. Do not get confused by the display.\n2. Make sure that there are no extra spaces anywhere in the output.\n3. The input to the program will be an integer > 0.\n",
+    "list_of_badges": [
+        "Python For-Loop",
+        "Python While Loop"
+    ],
+    "simulated_students": [
+        {
+            "question": "Write a program to print an isosceles right triangle as shown in the examples. The equal sides of the triangle are created using N stars (*). N is taken as input by the program.\n\nInput: 3\nOutput:\n*\n**\n***\n\nInput: 4\nOutput:\n*\n**\n***\n****\n\nNOTE: \n1. The length of the side is number of stars in it. Do not get confused by the display.\n2. Make sure that there are no extra spaces anywhere in the output.\n3. The input to the program will be an integer > 0.\n\n This is the code I have written so far. \nN = int(input())\n",
+            "student_code": "N = int(input())\n",
+            "ai_response": "```python\nN = int(input())\nfor i in range(1, N + 1):\n    print('*' * i)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nN = int(input())\\nfor i in range(1, N + 1):\\n    print('*' * i)\\n```\"}\n",
+            "ai_status": "Correct",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a program to print an isosceles right triangle as shown in the examples. The equal sides of the triangle are created using N stars (*). N is taken as input by the program.\n\nInput: 3\nOutput:\n*\n**\n***\n\nInput: 4\nOutput:\n*\n**\n***\n****\n\nNOTE: \n1. The length of the side is number of stars in it. Do not get confused by the display.\n2. Make sure that there are no extra spaces anywhere in the output.\n3. The input to the program will be an integer > 0.\n\n This is the code I have written so far. \nN = int(input())\n",
+            "student_code": "N = int(input())\n",
+            "ai_response": "```python\nN = int(input())\nfor i in range(1, N + 1):\n    print('*' * i)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nN = int(input())\\nfor i in range(1, N + 1):\\n    print('*' * i)\\n```\"}\n",
+            "ai_status": "Correct",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a program to print an isosceles right triangle as shown in the examples. The equal sides of the triangle are created using N stars (*). N is taken as input by the program.\n\nInput: 3\nOutput:\n*\n**\n***\n\nInput: 4\nOutput:\n*\n**\n***\n****\n\nNOTE: \n1. The length of the side is number of stars in it. Do not get confused by the display.\n2. Make sure that there are no extra spaces anywhere in the output.\n3. The input to the program will be an integer > 0.\n\n This is the code I have written so far. \nN = int(input())\n\nfor i in range(N):\n    for j in range(i+1):\n        print('*',end='')",
+            "student_code": "N = int(input())\n\nfor i in range(N):\n    for j in range(i+1):\n        print('*',end='')",
+            "ai_response": "```python\nN = int(input())\n\nfor i in range(N):\n    for j in range(i + 1):\n        print('*', end='')\n    print()  # To move to the next line after each row\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nN = int(input())\\n\\nfor i in range(N):\\n    for j in range(i + 1):\\n        print('*', end='')\\n    print()  # To move to the next line after each row\\n```\"}\n",
+            "ai_status": "Correct",
+            "ast_guardrail_status": "Correct"
+        }
+    ]
+}

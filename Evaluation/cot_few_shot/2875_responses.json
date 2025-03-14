@@ -1,0 +1,34 @@
+{
+    "problem_ID": "2875",
+    "statement": "Write a program to print the Alphabet pattern, as shown below. The input will be a number n, such that 1 <= n <= 26.\n\nNOTE: \n1. There is a single _ (underscore) at the start, at the end, and between two letters on each line.\n\n\nInput: 3\nOutput\n_A_\n_A_B_\n_A_B_C_\n\nInput: 4\nOutput\n_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n\n\n\n",
+    "list_of_badges": [
+        "Python For-Loop",
+        "Python While Loop"
+    ],
+    "simulated_students": [
+        {
+            "question": "Write a program to print the Alphabet pattern, as shown below. The input will be a number n, such that 1 <= n <= 26.\n\nNOTE: \n1. There is a single _ (underscore) at the start, at the end, and between two letters on each line.\n\n\nInput: 3\nOutput\n_A_\n_A_B_\n_A_B_C_\n\nInput: 4\nOutput\n_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n\n\n\n\n This is the code I have written so far. \nN = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"",
+            "student_code": "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"",
+            "ai_response": "```python\nN = int(input())\nLETTERS = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    line = \"_\"\n    for j in range(i + 1):\n        line += LETTERS[j] + \"_\"\n    print(line)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nN = int(input())\\nLETTERS = \\\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\"\\n\\nfor i in range(N):\\n    line = \\\"_\\\"\\n    for j in range(i + 1):\\n        line += LETTERS[j] + \\\"_\\\"\\n    print(line)\\n```\"}\n",
+            "ai_status": "Correct",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a program to print the Alphabet pattern, as shown below. The input will be a number n, such that 1 <= n <= 26.\n\nNOTE: \n1. There is a single _ (underscore) at the start, at the end, and between two letters on each line.\n\n\nInput: 3\nOutput\n_A_\n_A_B_\n_A_B_C_\n\nInput: 4\nOutput\n_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n\n\n\n\n This is the code I have written so far. \nN = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n",
+            "student_code": "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n",
+            "ai_response": "```python\nN = int(input())\nLETTERS = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(1, N + 1):\n    line = \"_\"\n    for j in range(i):\n        line += LETTERS[j] + \"_\"\n    print(line)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nN = int(input())\\nLETTERS = \\\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\"\\n\\nfor i in range(1, N + 1):\\n    line = \\\"_\\\"\\n    for j in range(i):\\n        line += LETTERS[j] + \\\"_\\\"\\n    print(line)\\n```\"}\n",
+            "ai_status": "Correct",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a program to print the Alphabet pattern, as shown below. The input will be a number n, such that 1 <= n <= 26.\n\nNOTE: \n1. There is a single _ (underscore) at the start, at the end, and between two letters on each line.\n\n\nInput: 3\nOutput\n_A_\n_A_B_\n_A_B_C_\n\nInput: 4\nOutput\n_A_\n_A_B_\n_A_B_C_\n_A_B_C_D_\n\n\n\n\n This is the code I have written so far. \nN = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    print('_',end='')\n    for j in range(i+1):\n        print(LETTERS[j], end='_')",
+            "student_code": "N = int(input())\nLETTERS=\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    print('_',end='')\n    for j in range(i+1):\n        print(LETTERS[j], end='_')",
+            "ai_response": "```python\nN = int(input())\nLETTERS = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n\nfor i in range(N):\n    print('_', end='')\n    for j in range(i + 1):\n        print(LETTERS[j], end='_')\n    print()  # Add this line to print a newline after each row\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nN = int(input())\\nLETTERS = \\\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\"\\n\\nfor i in range(N):\\n    print('_', end='')\\n    for j in range(i + 1):\\n        print(LETTERS[j], end='_')\\n    print()  # Add this line to print a newline after each row\\n```\"}\n",
+            "ai_status": "Correct",
+            "ast_guardrail_status": "Correct"
+        }
+    ]
+}

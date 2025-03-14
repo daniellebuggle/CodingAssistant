@@ -1,0 +1,33 @@
+{
+    "problem_ID": "2877",
+    "statement": "Write a python program to read from input a string. The input contains COMMA separated string values.\n \nThe output of the program is the count of string values where \n(a) the length is >= 2;  AND\n(b) the first and last character of the string value are the same.\n\nInput:\nabc,xyz,aba,1221,1\t\nOutput:\n2\n\nInput:\nabc, xyz , alpha\nOutput:\n1\n\n[Note that the second string ( xyz ) has SPACE at the start and at the end; while the last string ( alpha) has SPACE only at the start.\n",
+    "list_of_badges": [
+        "Python For-Loop"
+    ],
+    "simulated_students": [
+        {
+            "question": "Write a python program to read from input a string. The input contains COMMA separated string values.\n \nThe output of the program is the count of string values where \n(a) the length is >= 2;  AND\n(b) the first and last character of the string value are the same.\n\nInput:\nabc,xyz,aba,1221,1\t\nOutput:\n2\n\nInput:\nabc, xyz , alpha\nOutput:\n1\n\n[Note that the second string ( xyz ) has SPACE at the start and at the end; while the last string ( alpha) has SPACE only at the start.\n\n This is the code I have written so far. \nmyinput=input()\nvs = myinput.split(',')",
+            "student_code": "myinput=input()\nvs = myinput.split(',')",
+            "ai_response": "```python\nmyinput = input()\nvs = myinput.split(',')\n\ncount = 0\nfor value in vs:\n    value = value.strip()\n    if len(value) >= 2 and value[0] == value[-1]:\n        count += 1\n\nprint(count)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nmyinput = input()\\nvs = myinput.split(',')\\n\\ncount = 0\\nfor value in vs:\\n    value = value.strip()\"}\n",
+            "ai_status": "Incorrect",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a python program to read from input a string. The input contains COMMA separated string values.\n \nThe output of the program is the count of string values where \n(a) the length is >= 2;  AND\n(b) the first and last character of the string value are the same.\n\nInput:\nabc,xyz,aba,1221,1\t\nOutput:\n2\n\nInput:\nabc, xyz , alpha\nOutput:\n1\n\n[Note that the second string ( xyz ) has SPACE at the start and at the end; while the last string ( alpha) has SPACE only at the start.\n\n This is the code I have written so far. \nmyinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:",
+            "student_code": "myinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:",
+            "ai_response": "```python\nmyinput = input()\nvs = myinput.split(',')\ncount = 0\n\nfor v in vs:\n    v = v.strip()\n    if len(v) >= 2 and v[0] == v[-1]:\n        count += 1\n\nprint(count)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nmyinput = input()\\nvs = myinput.split(',')\\ncount = 0\\n\\nfor v in vs:\\n    v = v.strip()\"}\n",
+            "ai_status": "Incorrect",
+            "ast_guardrail_status": "Correct"
+        },
+        {
+            "question": "Write a python program to read from input a string. The input contains COMMA separated string values.\n \nThe output of the program is the count of string values where \n(a) the length is >= 2;  AND\n(b) the first and last character of the string value are the same.\n\nInput:\nabc,xyz,aba,1221,1\t\nOutput:\n2\n\nInput:\nabc, xyz , alpha\nOutput:\n1\n\n[Note that the second string ( xyz ) has SPACE at the start and at the end; while the last string ( alpha) has SPACE only at the start.\n\n This is the code I have written so far. \nmyinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:\n    if len(v) >= 2 and v[0]==v[-1]:\n        count += 1\n    ",
+            "student_code": "myinput=input()\nvs = myinput.split(',')\ncount=0\n\nfor v in vs:\n    if len(v) >= 2 and v[0]==v[-1]:\n        count += 1\n    ",
+            "ai_response": "```python\nmyinput = input()\nvs = myinput.split(',')\ncount = 0\n\nfor v in vs:\n    v = v.strip()  # Remove leading and trailing spaces\n    if len(v) >= 2 and v[0] == v[-1]:\n        count += 1\n\nprint(count)\n```",
+            "AST_guardrail_response": "{\"content\": \"```python\\nmyinput = input()\\nvs = myinput.split(',')\\ncount = 0\\n\\nfor v in vs:\\n    v = v.strip()  # Remove leading and trailing spaces\"}\n",
+            "ai_status": "Incorrect",
+            "ast_guardrail_status": "Correct"
+        }
+    ]
+}
